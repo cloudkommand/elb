@@ -83,10 +83,10 @@ def lambda_handler(event, context):
         """
 
         ### ATTRIBUTES THAT CAN BE SET ON INITIAL CREATION
-        subnets = cdef.get('subnets')
+        subnets = cdef.get('subnet_ids')
         # Removing subnet mappings for the time being to decrease complexity, since you cannot specify both subnets and subnet mappings
         # subnet_mappings = cdef.get('subnet_mappings') # Cannot specify both subnets and subnet mappings
-        security_groups = cdef.get('security_groups')
+        security_groups = cdef.get('security_group_ids')
         scheme = cdef.get('scheme') or "internal"
         tags = cdef.get('tags') # this is converted to a [{"Key": key, "Value": value} , ...] format
         load_balancer_type = cdef.get('load_balancer_type') or "application"
