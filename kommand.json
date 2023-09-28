@@ -13,6 +13,13 @@
                     "Sid": "Vis",
                     "Effect": "Allow",
                     "Action": [
+                        "ec2:DescribeSubnets",
+                        "ec2:DescribeAccountAttributes",
+                        "ec2:DescribeInternetGateways",
+                        "ec2:DescribeVpcs",
+                        "ec2:DescribeAddresses",
+                        "ec2:DescribeSecurityGroups",
+                        "iam:CreateServiceLinkedRole",
                         "elasticloadbalancing:DeleteLoadBalancer",
                         "elasticloadbalancing:DescribeLoadBalancerAttributes",
                         "elasticloadbalancing:DescribeLoadBalancers",
@@ -252,6 +259,8 @@
                         "elasticloadbalancing:CreateTargetGroup",
                         "ec2:DescribeInternetGateways",
                         "ec2:DescribeVpcs",
+                        "ec2:DescribeSubnets",
+                        "ec2:DescribeInstances",
                         "elasticloadbalancing:RemoveTags",
                         "elasticloadbalancing:DescribeTargetGroupAttributes",
                         "elasticloadbalancing:DescribeTags",
@@ -578,6 +587,26 @@
                     "definition": {
                         "type": "&alb_target_group.target_group",
                         "vpc_id": "vpc-examplevpcid"
+                    }
+                },
+                {
+                    "displayname": "Application Load Balancer Target Group routing traffic to specific IP Addresses",
+                    "notes": "Add IPs that your Target Group will route traffic to.",
+                    "definition": {
+                        "type": "&alb_target_group.target_group",
+                        "vpc_id": "vpc-examplevpcid",
+                        "targets": [
+                            {
+                                "availability_zone": "us-east-1a",
+                                "id": "IP_YOU_ARE_TARGETING",
+                                "port": 443
+                            },
+                            {
+                                "availability_zone": "us-east-1b",
+                                "id": "IP_YOU_ARE_TARGETING",
+                                "port": 443
+                            }
+                        ]
                     }
                 },
                 {
