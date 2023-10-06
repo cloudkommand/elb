@@ -72,6 +72,7 @@ def lambda_handler(event, context):
         cname = event.get("component_name")
         
         # Generate or read from component definition the identifier / name of the component here 
+        print(repo_id)
         name = eh.props.get("name") or cdef.get("name") or component_safe_name(project_code, repo_id, cname, no_underscores=True, no_uppercase=True, max_chars=32)
 
         # you pull in whatever arguments you care about
